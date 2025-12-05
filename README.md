@@ -1,98 +1,43 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<ul>
+  <li>
+    <h3>1.1</h3>
+    <p>
+      так мавпо це штука є базовим декоратором який потрібен для того щоб твій клас став саме котролером в Nest.js  застосунку. 
+      Простіше кажучи цей декоратор розширює мета дані твого класу.
+      user це префікс він не є обов'язковим,  але допомогає згрупувати пов'язані між собою routes.
+    </p>
+  </li>
+    <li>
+      <h3>1.2</h3>
+       <p>
+     Так бобі напишу одни раз більше повторювати не буду.Декоратор Get() представляює собою звичайний метод HTTP request.
+     За аналогією з декоратором Controller в нього можна встановлювати path.В даному випадку він залишається пустим це означає що ми можемо отримати цей route за таким шляхом   /user
+    </p>  
+    </li>
+     <li>
+      <h3>1.3</h3>
+       <p>
+       Так, у Nest.js є два способи для маніпуляції резпонсів.
+      1 Standard mode - Коли ми просто повертаємо масив або об'єкти Nest під капотом автоматично серіалізує наші данні до формату JSON.
+      Якщо ж ми повертаємо примітиви Javascripta  то Nest надсилає значення примітивів без серіалізації.
+      2 Library-specific mode - Ми можемо викорстовувати reposonse об'єкт базуючись на тому на якій платформі ми розробляємо замовчування  це Express.Щоб увімкнути цей мод потрібно використати Res() response.Це дає можливість використовувати нативний  reposonse об'єкт.Наприклад, response.status(200).send()
+      </p>  
+    </li>
+     <li>
+      <h3>1.4</h3>
+       <p>
+        Nest визначає, коли хендлер використовує @Res() або @Next(), що означає, що ви обрали варіант, специфічний для бібліотеки. Якщо обидва підходи застосовані одночасно, стандартний підхід автоматично вимикається для цього конкретного маршруту і більше не працюватиме як очікується.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+        Щоб використовувати обидва підходи одночасно (наприклад, коли потрібно лише встановити cookies/заголовки через об’єкт response, але решту залишити фреймворку), необхідно встановити опцію passthrough у значення true в декораторі @Res({ passthrough: true })
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+        Дивись бобі якщо ти викорстовуєшь Library-specific mode  то тобі обов’язково потрібно надіслати якусь відповідь, викликавши відповідний метод у об’єкта response (наприклад, res.json(...) або res.send(...)), інакше HTTP-сервер зависне.
+      </p>  
+    </li>
+    <li>
+      <h3>1.5</h3>
+       <p>
+       Cтандартний статус-код для відповідей завжди 200, за винятком POST-запитів, для яких за замовчуванням використовується 201.Бобі задопомгою HttpCode декоратора ми можемо змінити цю поведінку.Це одна хуйня типу в нас http status взагалі-то не завжди статичний тому в цьому випадку можна юзати @Res() response та викидувати свій власний статус код наприклад на якусь помилку.
+      </p>  
+    </li>
+</ul>
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ npm install
-```
-
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
